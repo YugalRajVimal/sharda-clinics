@@ -9,7 +9,7 @@ import Appointment from '../components/Appointment'
 
 const Home = () => {
   return (
-    <div className='pt-40 md:pt-0' >
+    <div className='pt-40 md:pt-28' >
       <Hero />
       <WhyChooseUs />
       <OurServices />

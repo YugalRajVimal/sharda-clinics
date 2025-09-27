@@ -21,8 +21,8 @@ const Hero = () => {
   const scrollTo = useScrollTo();
 
   return (
-    <section className="relative min-h-screen" id="home">
-      <div className="absolute inset-0 bg-blue-50">
+    <section className="relative min-h-screen h-[160vh] md:h-auto" id="home">
+      <div className="absolute inset-0 bg-blue-50 ">
         {/* Background pattern */}
         <div className="absolute inset-0 -z-10">
           <svg className="max-w-full h-full opacity-10" viewBox="0 0 800 800">
@@ -45,10 +45,10 @@ const Hero = () => {
           </svg>
         </div>
 
-        <div className="flex justify-center container flex-col h-full mx-auto px-6 py-20 relative z-10">
-          <div className="flex items-center flex-col md:flex-row">
+        <div className="flex justify-center container flex-col mx-auto px-6 py-20 relative z-10">
+          <div className="flex items-center flex-col-reverse md:flex-row">
             <div
-              className={`mb-16 md:mb-0 md:w-1/2 transition duration-1000 delay-300 ${
+              className={`mb-16 md:mb-0 md:w-1/2 transition duration-1000 delay-300 h-[80vh] ${
                 shown
                   ? "opacity-100 translate-x-0"
                   : "opacity-0 -translate-x-12"

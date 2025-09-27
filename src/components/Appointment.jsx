@@ -12,11 +12,11 @@ const Appointment = () => {
             {/** Left side  */}
             <div className="relative lg:w-2/5">
               <img
-                src={doc1}
+                src="/banner0.webp"
                 className="w-full h-full object-cover"
                 alt="Doctor with patient"
               />
-              <div className="flex flex-col absolute bg-gradient-to-t from-blue-900/70 inset-0 justify-end p-8 to-transparent">
+              <div className="flex flex-col absolute bg-gradient-to-t from-blue-900 inset-0 justify-end p-8 to-transparent">
                 <h3 className="font-bold mb-2 text-2xl !text-white">
                   Schedule Your Visit
                 </h3>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import heroImg from "../assets/heroImg.avif";
+
 
 const HeroRight = () => {
   const [shown, setShown] = useState(false);
@@ -11,24 +11,24 @@ const HeroRight = () => {
 
   return (
     <div
-      className={`relative md:w-1/2 transition duration-1000 delay-500 ${
+      className={`relative w-full md:w-1/2 transition duration-1000 delay-500 h-[80vh]  md:h-full ${
         shown ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"
       }`}
     >
-      <div className="relative">
+      <div className="relative h-[60vh]">
         {/* Decorative Elements */}
-        <div className="rounded-full absolute opacity-60 -left-8 -top-8 bg-blue-200 h-24 w-24"></div>
+        <div className="rounded-full absolute opacity-60 -left-6 -top-4 bg-blue-200 h-24 w-24"></div>
         <div className="rounded-full absolute opacity-60 -bottom-8 -right-8 bg-green-200 h-32 w-32"></div>
 
         {/* Main Image */}
         <img
-          alt="Doctor with patient"
-          className="relative z-10 rounded-2xl shadow-xl max-w-full h-auto object-contain"
-          src={heroImg}
+          alt="banner"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  z-10  max-w-full h-full mx-auto object-contain"
+          src="/banner0.webp"
         />
 
         {/* Floating Card 1 */}
-        <div className="flex items-center absolute -right-5 -top-5 bg-white p-3 rounded-xl shadow-lg z-20">
+        <div className="flex items-center absolute -right-5 top-0 bg-white p-3 rounded-xl shadow-lg z-20">
           <div className="mr-3 p-2 rounded-lg bg-green-100">
             <svg
               className="text-green-600 h-6 w-6"

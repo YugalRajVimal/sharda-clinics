@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+body {
+  background-color: #eff6ff;
+  color: #1E293B;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: #1E293B;
+}
+
+.text-medical-gradient {
+  background: linear-gradient(to right, #1a6dff, #38b6ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* fallback for some browsers */
+  color: transparent;    /* ensure text color is transparent */
+}
+
+.bg-medical-gradient{
+  background: linear-gradient(to right, #1a6dff, #38b6ff);
+
+}
+
+.font-montserrat{
+  font-family: "Montserrat", sans-serif;
+}
+
+.font-roboto{
+  font-family: "Roboto", sans-serif;
+}
+
+.bg-white-custom {
+  background-color: #ffffff;
+}
+
+.bg-light-blue-custom {
+  background-color: #eff6ff;
+}
+
+
+.container {
+  /* max-width: 1400px; */
+  margin: 0 auto;
+  padding: 0 30px;
+}
+

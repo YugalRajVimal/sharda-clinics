@@ -31,8 +31,8 @@ const BlogsPage = ({ lang }) => {
     setLoading(true);
     try {
       const data = await getUploadedBlogs(pageNum);
-      setBlogs((prev) => [...prev, ...data.blogs]);
-      setTotalPages(data.totalPages || 1);
+      setBlogs((prev) => [...prev, ...data?.blogs]);
+      setTotalPages(data?.totalPages || 1);
     } catch (err) {
       console.error(err);
       toast.error("Failed to fetch blogs");
@@ -77,7 +77,7 @@ const BlogsPage = ({ lang }) => {
 
       {/* Blog grid: auto layout with dynamic heights */}
       <main className="grid  grid-cols-1 gap-8 auto-rows-min">
-        {blogs.map((blog, idx) => {
+        {blogs?.map((blog, idx) => {
           const mediaUrl = blog.imagePath
             ? `${import.meta.env.VITE_API_URL}/${blog.imagePath}`
             : blog.videoPath

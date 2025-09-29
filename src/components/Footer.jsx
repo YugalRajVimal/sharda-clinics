@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaLaptopMedical } from "react-icons/fa";
 import { IoMdMail, IoMdCall } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
@@ -45,12 +45,19 @@ const services = [
 ];
 
 const Footer = () => {
+  const location = useLocation();
+  const isAdminPath = location.pathname.startsWith("/admin");
+
   const handleLinkClick = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
+
+  if (isAdminPath) {
+    return null; // Hide the footer if the path starts with /admin
+  }
 
   return (
     <footer className="bg-gray-900 py-12 text-white">

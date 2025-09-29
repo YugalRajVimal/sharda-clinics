@@ -1,13 +1,31 @@
 import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
 
-const CTA = () => {
+const CTA = ({ lang }) => {
   const useScrollTo = () =>
     useCallback((id) => {
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     }, []);
 
   const scrollTo = useScrollTo();
+
+  // Texts according to language
+  const texts = {
+    en: {
+      heading: "Ready for Expert, Compassionate Medical Care?",
+      desc: `Book your appointment at Sharda Clinic, Agra, led by Maj (Dr.) Vishwa Deepak (Retd.), and take the first step toward better health with trusted, personalized treatment.`,
+      book: "Book Appointment",
+      contact: "Contact Us",
+    },
+    hi: {
+      heading: "विशेषज्ञ और सहानुभूतिपूर्ण चिकित्सा देखभाल के लिए तैयार हैं?",
+      desc: `Sharda Clinic, Agra में अपनी अपॉइंटमेंट बुक करें, जिसका नेतृत्व Maj (Dr.) Vishwa Deepak (Retd.) करते हैं, और भरोसेमंद, व्यक्तिगत उपचार के साथ बेहतर स्वास्थ्य की दिशा में पहला कदम उठाएँ।`,
+      book: "अपॉइंटमेंट बुक करें",
+      contact: "संपर्क करें",
+    },
+  };
+
+  const { heading, desc, book, contact } = texts[lang] || texts.en;
 
   return (
     <section className="overflow-hidden relative bg-medical-gradient py-10">
@@ -35,17 +53,10 @@ const CTA = () => {
 
       {/* Content */}
       <div className="mx-auto container px-6 relative z-10">
-        <div className="flex flex-col items-center gap-10  justify-between">
+        <div className="flex flex-col items-center gap-10 justify-between">
           <div className="mb-8 max-w-2xl md:mb-0">
-            <h2 className="font-bold text-3xl mb-3 !text-white">
-              Ready for Expert, Compassionate Medical Care?
-            </h2>
-            <p className="text-blue-100">
-              Book your appointment at{" "}
-              <span className="font-semibold">Sharda Clinic, Agra</span>, led by{" "}
-              Maj (Dr.) Vishwa Deepak (Retd.), and take the first step toward
-              better health with trusted, personalized treatment.
-            </p>
+            <h2 className="font-bold text-3xl mb-3 !text-white">{heading}</h2>
+            <p className="text-blue-100">{desc}</p>
           </div>
 
           {/* Buttons */}
@@ -55,7 +66,7 @@ const CTA = () => {
               onClick={() => scrollTo("appointment")}
               className="font-medium items-center inline-flex btn-medical justify-center px-8 py-3.5 rounded-full shadow-lg bg-white hover:bg-blue-100 transition cursor-pointer"
             >
-              <span className="mr-2 !text-blue-700">Book Appointment</span>
+              <span className="mr-2 !text-blue-700">{book}</span>
             </Link>
 
             {/* Contact */}
@@ -63,7 +74,7 @@ const CTA = () => {
               to="/contact"
               className="transition-colors text-white inline-flex items-center border-2 border-white justify-center px-8 py-3.5 rounded-full cursor-pointer"
             >
-              <span>Contact Us</span>
+              <span>{contact}</span>
             </Link>
           </div>
         </div>

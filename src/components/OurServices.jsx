@@ -1,58 +1,121 @@
 import React from "react";
 import Button from "../components/Button";
 
-const services = [
-  {
-    title: "Critical Care & Cardiology",
-    desc: "Expert management of heart diseases, cardiac emergencies, and critical medical conditions.",
-  },
-  {
-    title: "Diabetes Management",
-    desc: "Comprehensive care for diabetes, including lifestyle guidance and long-term monitoring.",
-  },
-  {
-    title: "Hypertension Control",
-    desc: "Effective treatment plans to manage and control high blood pressure safely.",
-  },
-  {
-    title: "Thyroid Disorders",
-    desc: "Diagnosis and treatment for thyroid-related conditions with personalized care.",
-  },
-  {
-    title: "Asthma & Respiratory Care",
-    desc: "Advanced management of asthma, allergies, and other lung-related disorders.",
-  },
-  {
-    title: "Joint Pain & Arthritis",
-    desc: "Relief and treatment for arthritis, sciatica, and musculoskeletal problems.",
-  },
-  {
-    title: "Neurological Disorders",
-    desc: "Care for conditions such as headache, epilepsy, stroke, and neuropathies.",
-  },
-  {
-    title: "Gastrointestinal Issues",
-    desc: "Treatment for colitis, ulcers, pancreatitis, abdominal pain, and digestive disorders.",
-  },
-  {
-    title: "Infectious Diseases",
-    desc: "Specialized care for dengue, malaria, typhoid, and other acute infections.",
-  },
-];
+const servicesData = {
+  en: [
+    {
+      title: "Critical Care & Cardiology",
+      desc: "Expert management of heart diseases, cardiac emergencies, and critical medical conditions.",
+    },
+    {
+      title: "Diabetes Management",
+      desc: "Comprehensive care for diabetes, including lifestyle guidance and long-term monitoring.",
+    },
+    {
+      title: "Hypertension Control",
+      desc: "Effective treatment plans to manage and control high blood pressure safely.",
+    },
+    {
+      title: "Thyroid Disorders",
+      desc: "Diagnosis and treatment for thyroid-related conditions with personalized care.",
+    },
+    {
+      title: "Asthma & Respiratory Care",
+      desc: "Advanced management of asthma, allergies, and other lung-related disorders.",
+    },
+    {
+      title: "Joint Pain & Arthritis",
+      desc: "Relief and treatment for arthritis, sciatica, and musculoskeletal problems.",
+    },
+    {
+      title: "Neurological Disorders",
+      desc: "Care for conditions such as headache, epilepsy, stroke, and neuropathies.",
+    },
+    {
+      title: "Gastrointestinal Issues",
+      desc: "Treatment for colitis, ulcers, pancreatitis, abdominal pain, and digestive disorders.",
+    },
+    {
+      title: "Infectious Diseases",
+      desc: "Specialized care for dengue, malaria, typhoid, and other acute infections.",
+    },
+  ],
+  hi: [
+    {
+      title: "गंभीर चिकित्सा और हृदय रोग",
+      desc: "हृदय रोग, आपातकालीन हृदय स्थितियों और गंभीर चिकित्सा समस्याओं का विशेषज्ञ प्रबंधन।",
+    },
+    {
+      title: "मधुमेह प्रबंधन",
+      desc: "मधुमेह के लिए समग्र देखभाल, जिसमें जीवनशैली मार्गदर्शन और दीर्घकालिक निगरानी शामिल है।",
+    },
+    {
+      title: "उच्च रक्तचाप नियंत्रण",
+      desc: "उच्च रक्तचाप को सुरक्षित रूप से प्रबंधित और नियंत्रित करने के लिए प्रभावी उपचार योजनाएँ।",
+    },
+    {
+      title: "थायरॉइड विकार",
+      desc: "थायरॉइड से संबंधित स्थितियों का निदान और व्यक्तिगत उपचार।",
+    },
+    {
+      title: "अस्थमा और श्वसन देखभाल",
+      desc: "अस्थमा, एलर्जी और अन्य फेफड़े से संबंधित विकारों का उन्नत प्रबंधन।",
+    },
+    {
+      title: "संधि दर्द और अर्थराइटिस",
+      desc: "आर्थराइटिस, सियाटिका और मस्कुलोस्केलेटल समस्याओं का राहत और उपचार।",
+    },
+    {
+      title: "स्नायु तंत्र विकार",
+      desc: "सिरदर्द, मिर्गी, स्ट्रोक और न्यूरोपैथियों के लिए देखभाल।",
+    },
+    {
+      title: "पाचन तंत्र संबंधी समस्याएँ",
+      desc: "कोलाइटिस, अल्सर, पैंक्रियाटाइटिस, पेट दर्द और पाचन विकारों का उपचार।",
+    },
+    {
+      title: "संक्रामक रोग",
+      desc: "डेंगू, मलेरिया, टाइफाइड और अन्य तीव्र संक्रमणों के लिए विशेषज्ञ देखभाल।",
+    },
+  ],
+};
 
-const OurServices = () => {
+const titles = {
+  en: {
+    heading: "Our",
+    highlight: "Services",
+    subheading:
+      "At Sharda Clinic, Agra, we provide comprehensive medical care — from everyday health concerns to specialized treatments in cardiology, diabetes, critical care, and more.",
+    button: "View All Services",
+  },
+  hi: {
+    heading: "हमारी",
+    highlight: "सेवाएँ",
+    subheading:
+      "Sharda Clinic, Agra me hum provide karte hain comprehensive medical care — roz ke health concerns se le kar specialized treatments tak cardiology, diabetes, critical care aur zyada.",
+    button: "सभी सेवाएँ देखें",
+  },
+};
+
+const OurServices = ({ lang }) => {
+  const services = servicesData[lang] || servicesData.en;
+  const t = titles[lang] || titles.en;
+
   return (
     <section className="py-20 bg-blue-50">
       <div className="mx-auto container px-6">
         {/* Title */}
         <div className="mx-auto max-w-3xl mb-16 text-center">
-          <h2 className="font-bold text-3xl mb-4">
-            Our <span className="text-medical-gradient">Services</span>
+          <h2
+            className={`font-bold text-3xl mb-4 ${
+              lang === "hi" ? "font-hindi" : ""
+            }`}
+          >
+            {t.heading}{" "}
+            <span className="text-medical-gradient">{t.highlight}</span>
           </h2>
-          <p className="text-gray-600">
-            At Sharda Clinic, Agra, we provide comprehensive medical care —
-            from everyday health concerns to specialized treatments in
-            cardiology, diabetes, critical care, and more.
+          <p className={`text-gray-600 ${lang === "hi" ? "font-hindi" : ""}`}>
+            {t.subheading}
           </p>
         </div>
 
@@ -63,10 +126,18 @@ const OurServices = () => {
               key={index}
               className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1"
             >
-              <h3 className="text-lg sm:text-xl font-semibold text-medical-gradient mb-2">
+              <h3
+                className={`text-lg sm:text-xl font-semibold text-medical-gradient mb-2 ${
+                  lang === "hi" ? "font-hindi" : ""
+                }`}
+              >
                 {service.title}
               </h3>
-              <p className="text-gray-600 text-sm sm:text-base">
+              <p
+                className={`text-gray-600 text-sm sm:text-base ${
+                  lang === "hi" ? "font-hindi" : ""
+                }`}
+              >
                 {service.desc}
               </p>
             </div>
@@ -75,7 +146,7 @@ const OurServices = () => {
 
         {/* Button */}
         <div className="mt-12 text-center">
-          <Button text="View All Services" to="/services" />
+          <Button text={t.button} to="/services" />
         </div>
       </div>
     </section>

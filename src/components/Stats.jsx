@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-const Stats = () => {
+const Stats = ({ lang }) => {
   return (
     <div className="grid gap-4 grid-cols-3 mt-12">
       <div>
@@ -16,7 +16,7 @@ const Stats = () => {
         <div className="text-gray-500">Satisfaction</div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Stats
+export default Stats;

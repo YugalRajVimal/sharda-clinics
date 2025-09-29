@@ -1,4 +1,4 @@
-import react from "react";
+import react, { useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -21,15 +21,17 @@ import AdminProtectedRoute from "./ProtectedRoutes/AdminProtectedRoute";
 import { ToastContainer } from "react-toastify";
 
 function App() {
+  const [lang, setLang] = useState("hi");
+
   return (
     <>
-      <Navbar />
+      <Navbar lang={lang} setLang={setLang} />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/blogs" element={<BlogsPage />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/" element={<Home lang={lang} />} />
+        <Route path="/services" element={<Services lang={lang} />} />
+        <Route path="/about" element={<About lang={lang} />} />
+        <Route path="/blogs" element={<BlogsPage lang={lang} />} />
+        <Route path="/contact" element={<Contact lang={lang} />} />
 
         <Route
           path="/admin"
@@ -66,7 +68,7 @@ function App() {
         <Route path="*" element={<Navigate to="/admin/panel" replace />} />
       </Routes>
 
-      <Footer />
+      <Footer lang={lang}/>
       <ToastContainer
         position="top-right"
         autoClose={3000}

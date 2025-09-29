@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 
-const BlogsPage = () => {
+const BlogsPage = ({ lang }) => {
   const [blogs, setBlogs] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -55,7 +55,11 @@ const BlogsPage = () => {
       { threshold: 1 }
     );
     if (loader.current) observer.observe(loader.current);
-    return () => loader.current && observer.unobserve(loader.current);
+    return () => {
+      if (loader.current) {
+        observer.unobserve(loader.current);
+      }
+    };
   }, [loader, page, totalPages]);
 
   return (

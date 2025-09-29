@@ -1,17 +1,22 @@
 import { useState, useEffect } from "react";
 
-
-const HeroRight = () => {
+const HeroRight = ({ lang }) => {
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
-    // Mount hone ke baad animation trigger
     setTimeout(() => setShown(true), 300);
   }, []);
 
+  const texts = {
+    recovery: { en: "98% Recovery Rate", hi: "98% स्वस्थ होने की दर" },
+    proven: { en: "Proven results", hi: "साबित परिणाम" },
+    support: { en: "24/7 Support", hi: "24/7 सहायता" },
+    available: { en: "Available now", hi: "अभी उपलब्ध" },
+  };
+
   return (
     <div
-      className={`relative w-full md:w-1/2 transition duration-1000 delay-500 h-[80vh]  md:h-full ${
+      className={`relative w-full md:w-1/2 transition duration-1000 delay-500 h-[80vh] md:h-full ${
         shown ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"
       }`}
     >
@@ -23,7 +28,7 @@ const HeroRight = () => {
         {/* Main Image */}
         <img
           alt="banner"
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  z-10  max-w-full h-full mx-auto object-contain"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 max-w-full h-full mx-auto object-contain"
           src="/banner0.webp"
         />
 
@@ -45,8 +50,20 @@ const HeroRight = () => {
             </svg>
           </div>
           <div>
-            <p className="font-semibold text-sm">98% Recovery Rate</p>
-            <p className="text-gray-500 text-xs">Proven results</p>
+            <p
+              className={`font-semibold text-sm ${
+                lang === "hi" ? "font-hindi" : ""
+              }`}
+            >
+              {texts.recovery[lang]}
+            </p>
+            <p
+              className={`text-gray-500 text-xs ${
+                lang === "hi" ? "font-hindi" : ""
+              }`}
+            >
+              {texts.proven[lang]}
+            </p>
           </div>
         </div>
 
@@ -68,7 +85,13 @@ const HeroRight = () => {
                 ></path>
               </svg>
             </div>
-            <p className="font-semibold text-sm">24/7 Support</p>
+            <p
+              className={`font-semibold text-sm ${
+                lang === "hi" ? "font-hindi" : ""
+              }`}
+            >
+              {texts.support[lang]}
+            </p>
           </div>
           <div className="flex">
             <div className="flex -space-x-2">
@@ -82,7 +105,13 @@ const HeroRight = () => {
                 AL
               </div>
             </div>
-            <div className="text-gray-500 text-xs ml-2">Available now</div>
+            <div
+              className={`text-gray-500 text-xs ml-2 ${
+                lang === "hi" ? "font-hindi" : ""
+              }`}
+            >
+              {texts.available[lang]}
+            </div>
           </div>
         </div>
       </div>

@@ -5,59 +5,79 @@ import { IoMdMail, IoMdCall } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
 import { FiInstagram, FiFacebook, FiLinkedin, FiYoutube } from "react-icons/fi";
 
-const services = [
-  {
-    title: "Critical Care & Cardiology",
-    desc: "Expert management of heart diseases, cardiac emergencies, and critical medical conditions.",
-  },
-  {
-    title: "Diabetes Management",
-    desc: "Comprehensive care for diabetes, including lifestyle guidance and long-term monitoring.",
-  },
-  {
-    title: "Hypertension Control",
-    desc: "Effective treatment plans to manage and control high blood pressure safely.",
-  },
-  {
-    title: "Thyroid Disorders",
-    desc: "Diagnosis and treatment for thyroid-related conditions with personalized care.",
-  },
-  {
-    title: "Asthma & Respiratory Care",
-    desc: "Advanced management of asthma, allergies, and other lung-related disorders.",
-  },
-  {
-    title: "Joint Pain & Arthritis",
-    desc: "Relief and treatment for arthritis, sciatica, and musculoskeletal problems.",
-  },
-  {
-    title: "Neurological Disorders",
-    desc: "Care for conditions such as headache, epilepsy, stroke, and neuropathies.",
-  },
-  {
-    title: "Gastrointestinal Issues",
-    desc: "Treatment for colitis, ulcers, pancreatitis, abdominal pain, and digestive disorders.",
-  },
-  {
-    title: "Infectious Diseases",
-    desc: "Specialized care for dengue, malaria, typhoid, and other acute infections.",
-  },
-];
+const servicesData = {
+  en: [
+    "Critical Care & Cardiology",
+    "Diabetes Management",
+    "Hypertension Control",
+    "Thyroid Disorders",
+    "Asthma & Respiratory Care",
+    "Joint Pain & Arthritis",
+  ],
+  hi: [
+    "क्रिटिकल केयर और कार्डियोलॉजी",
+    "डायबिटीज मैनेजमेंट",
+    "हाई ब्लड प्रेशर कंट्रोल",
+    "थायरॉइड डिसऑर्डर्स",
+    "अस्थमा और रेस्पिरेटरी केयर",
+    "जॉइंट पेन और आर्थराइटिस",
+  ],
+};
 
-const Footer = () => {
+const texts = {
+  en: {
+    quickLinks: "Quick Links",
+    home: "Home",
+    about: "About Us",
+    services: "Services",
+    contact: "Contact",
+    viewAll: "View All →",
+    contactUs: "Contact Us",
+    email: "shardaclinicagra@gmail.com",
+    phone: "+91 90276 69380",
+    address:
+      "Gailana Rd, in front of ISBT, near Asopa Hospital, Tiraha, Kakraita, Agra, Uttar Pradesh 282007",
+    description:
+      "Trusted medical care by Maj (Dr.) Vishwa Deepak (Retd.) — combining experience, compassion, and dedication to patient well-being.",
+    copyright: "All rights reserved.",
+    privacy: "Privacy Policy",
+    terms: "Terms of Service",
+    cookie: "Cookie Policy",
+    servicesTitle: "Services",
+  },
+  hi: {
+    quickLinks: "त्वरित लिंक",
+    home: "होम",
+    about: "हमारे बारे में",
+    services: "सेवाएँ",
+    contact: "संपर्क करें",
+    viewAll: "सभी देखें →",
+    contactUs: "संपर्क करें",
+    email: "shardaclinicagra@gmail.com",
+    phone: "+91 90276 69380",
+    address:
+      "गैलाना रोड, ISBT के सामने, आसोपा हॉस्पिटल के पास, तिराहा, ककरैता, आगरा, उत्तर प्रदेश 282007",
+    description:
+      "श्री (डॉ.) विश्व दीपक (सेवानिवृत्त) द्वारा भरोसेमंद चिकित्सा देखभाल — अनुभव, करुणा और रोगी कल्याण के प्रति समर्पण के साथ।",
+    copyright: "सर्वाधिकार सुरक्षित।",
+    privacy: "गोपनीयता नीति",
+    terms: "सेवा की शर्तें",
+    cookie: "कुकी नीति",
+    servicesTitle: "सेवाएँ",
+  },
+};
+
+const Footer = ({ lang }) => {
   const location = useLocation();
   const isAdminPath = location.pathname.startsWith("/admin");
+  if (isAdminPath) return null;
+
+  const t = texts[lang] || texts.en;
+  const services = servicesData[lang] || servicesData.en;
 
   const handleLinkClick = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  if (isAdminPath) {
-    return null; // Hide the footer if the path starts with /admin
-  }
 
   return (
     <footer className="bg-gray-900 py-12 text-white">
@@ -67,54 +87,42 @@ const Footer = () => {
           <div>
             <div className="flex items-center mb-4">
               <a href="" className="flex items-center">
-                <img src="/logo.png" className="h-[8vh]" />
+                <img src="/logo.png" className="h-[8vh]" alt="Logo" />
               </a>
             </div>
-            <p className="mb-6 text-gray-300">
-              Trusted medical care by Maj (Dr.) Vishwa Deepak (Retd.) —
-              combining experience, compassion, and dedication to patient
-              well-being.
-            </p>
+            <p className="mb-6 text-gray-300">{t.description}</p>
             <div className="flex space-x-4">
-              {[
-                { icon: FiInstagram, link: "/" },
-                { icon: FiFacebook, link: "/" },
-                { icon: FiLinkedin, link: "/" },
-                { icon: FiYoutube, link: "/" },
-              ].map((item, index) => (
-                <a
-                  key={index}
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white transition-colors hover:text-gray-300"
-                  onClick={handleLinkClick}
-                >
-                  <item.icon size={18} className="h-5 w-5" />
-                </a>
-              ))}
+              {[FiInstagram, FiFacebook, FiLinkedin, FiYoutube].map(
+                (Icon, index) => (
+                  <a
+                    key={index}
+                    href="/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white transition-colors hover:text-gray-300"
+                    onClick={handleLinkClick}
+                  >
+                    <Icon size={18} className="h-5 w-5" />
+                  </a>
+                )
+              )}
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
             <h3 className="mb-4 font-semibold text-lg !text-white">
-              Quick Links
+              {t.quickLinks}
             </h3>
             <ul className="space-y-2">
-              {[
-                { name: "Home", link: "/" },
-                { name: "About Us", link: "/about" },
-                { name: "Services", link: "/services" },
-                { name: "Contact", link: "/contact" },
-              ].map((item, index) => (
+              {[t.home, t.about, t.services, t.contact].map((item, index) => (
                 <li key={index}>
                   <Link
-                    to={item.link}
+                    to={["/", "/about", "/services", "/contact"][index]}
                     className="text-gray-400 transition-colors hover:text-white"
                     onClick={handleLinkClick}
                   >
-                    {item.name}
+                    {item}
                   </Link>
                 </li>
               ))}
@@ -123,12 +131,14 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h3 className="mb-4 font-semibold text-lg !text-white">Services</h3>
+            <h3 className="mb-4 font-semibold text-lg !text-white">
+              {t.servicesTitle}
+            </h3>
             <ul className="space-y-2">
               {services.slice(0, 6).map((service, index) => (
                 <li key={index}>
                   <span className="text-gray-400 transition-colors hover:text-white">
-                    {service.title}
+                    {service}
                   </span>
                 </li>
               ))}
@@ -137,7 +147,7 @@ const Footer = () => {
                   to="/services"
                   className="text-blue-400 hover:underline text-sm"
                 >
-                  View All →
+                  {t.viewAll}
                 </Link>
               </li>
             </ul>
@@ -148,33 +158,31 @@ const Footer = () => {
             <div className="w-fit">
               <h3 className="text-lg font-semibold mb-6 !text-white inline-flex items-center">
                 <span className="w-6 h-px bg-danger mr-2"></span>
-                Contact Us
+                {t.contactUs}
               </h3>
-
               <ul className="space-y-4">
                 <li className="flex items-start group">
                   <IoMdMail className="w-5 h-5 text-white mr-3 mt-0.5 group-hover:animate-pulse" />
                   <a
-                    href="mailto:shardaclinicagra@gmail.com"
+                    href={`mailto:${t.email}`}
                     className="text-gray-400 group-hover:text-white transition-colors"
                   >
-                    shardaclinicagra@gmail.com
+                    {t.email}
                   </a>
                 </li>
                 <li className="flex items-start group">
                   <IoMdCall className="w-5 h-5 text-white mr-3 mt-0.5 group-hover:animate-pulse" />
                   <a
-                    href="tel:+917742863725"
+                    href={`tel:${t.phone}`}
                     className="text-gray-400 group-hover:text-white transition-colors"
                   >
-                    +91 90276 69380
+                    {t.phone}
                   </a>
                 </li>
                 <li className="flex items-start group">
-                  <IoLocationSharp className="w-5 h-5 text-white mr-3 mt-0. shrink-0 group-hover:animate-pulse" />
-                  <span className="text-gray-400 group-hover:text-white transition-colors ">
-                    Gailana Rd, in front of ISBT, near Asopa Hospital, Tiraha,
-                    Kakraita, Agra, Uttar Pradesh 282007
+                  <IoLocationSharp className="w-5 h-5 text-white mr-3 mt-0.5 group-hover:animate-pulse" />
+                  <span className="text-gray-400 group-hover:text-white transition-colors">
+                    {t.address}
                   </span>
                 </li>
               </ul>
@@ -185,20 +193,19 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between border-gray-800 border-t mt-12 pt-6">
           <p className="text-white md:text-left text-center">
-            © {new Date().getFullYear()} Sharda Clinic, Agra. All rights
-            reserved.
+            © {new Date().getFullYear()} Sharda Clinic, Agra. {t.copyright}
           </p>
 
           <div className="flex justify-center md:justify-start md:mt-0 mt-4 space-x-6">
-            <a href="#" className="text-white text-sm hover:text-gray-300">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-white text-sm hover:text-gray-300">
-              Terms of Service
-            </a>
-            <a href="#" className="text-white text-sm hover:text-gray-300">
-              Cookie Policy
-            </a>
+            {[t.privacy, t.terms, t.cookie].map((item, index) => (
+              <a
+                key={index}
+                href="#"
+                className="text-white text-sm hover:text-gray-300"
+              >
+                {item}
+              </a>
+            ))}
           </div>
         </div>
       </div>

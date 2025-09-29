@@ -51,7 +51,13 @@ export default function UploadBlog() {
       { threshold: 1 }
     );
     if (loader.current) observer.observe(loader.current);
-    return () => loader.current && observer.unobserve(loader.current);
+
+    return () => {
+        if (loader.current) {
+          observer.unobserve(loader.current);
+        }
+      };
+      
   }, [loader, page, totalPages]);
 
   const handleFileChange = (e) => {

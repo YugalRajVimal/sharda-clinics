@@ -2,47 +2,78 @@ import React from "react";
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 
 // Doctor images (replace with real ones if available)
-
 import doc2 from "../assets/Doc/doc2.avif";
 
-const doctors = [
-  {
-    id: 1,
-    name: "Dr. Vishwa Deepak (R)",
-    specialty: "Critical Care & Internal Medicine",
-    desc: "Founder of Sharda Clinic, Agra. MBBS, MD with extensive expertise in Internal Medicine and Critical Care. Dedicated to providing compassionate and comprehensive healthcare.",
-    img: "doctor.jpg",
-    socials: {
-      facebook: "#",
-      twitter: "#",
-      linkedin: "#",
+const doctorsData = {
+  en: [
+    {
+      id: 1,
+      name: "Dr. Vishwa Deepak (R)",
+      specialty: "Critical Care & Internal Medicine",
+      desc: "Founder of Sharda Clinic, Agra. MBBS, MD with extensive expertise in Internal Medicine and Critical Care. Dedicated to providing compassionate and comprehensive healthcare.",
+      img: "doctor.jpg",
+      socials: {
+        facebook: "#",
+        twitter: "#",
+        linkedin: "#",
+      },
     },
-  },
-  {
-    id: 2,
-    name: "Sharda Clinic Team",
-    specialty: "Specialists & Supporting Doctors",
-    desc: "A multidisciplinary team of experienced physicians and specialists ensuring quality care in cardiology, neurology, diabetes, hypertension, and general medicine.",
-    socials: {
-      facebook: "#",
-      twitter: "#",
-      linkedin: "#",
+    {
+      id: 2,
+      name: "Sharda Clinic Team",
+      specialty: "Specialists & Supporting Doctors",
+      desc: "A multidisciplinary team of experienced physicians and specialists ensuring quality care in cardiology, neurology, diabetes, hypertension, and general medicine.",
+      socials: {
+        facebook: "#",
+        twitter: "#",
+        linkedin: "#",
+      },
     },
-  },
-];
+  ],
+  hi: [
+    {
+      id: 1,
+      name: "डॉ. विश्व दीपक (R)",
+      specialty: "गंभीर चिकित्सा और आंतरिक चिकित्सा",
+      desc: "शारदा क्लिनिक, आगरा के संस्थापक। MBBS, MD, आंतरिक चिकित्सा और गंभीर देखभाल में व्यापक विशेषज्ञता। सहानुभूतिपूर्ण और समग्र स्वास्थ्य सेवा प्रदान करने के लिए समर्पित।",
+      img: "doctor.jpg",
+      socials: {
+        facebook: "#",
+        twitter: "#",
+        linkedin: "#",
+      },
+    },
+    {
+      id: 2,
+      name: "शारदा क्लिनिक टीम",
+      specialty: "विशेषज्ञ और सहायक डॉक्टर",
+      desc: "अनुभवी चिकित्सकों और विशेषज्ञों की बहुविध टीम, जो कार्डियोलॉजी, न्यूरोलॉजी, डायबिटीज, उच्च रक्तचाप और सामान्य चिकित्सा में गुणवत्तापूर्ण देखभाल सुनिश्चित करती है।",
+      socials: {
+        facebook: "#",
+        twitter: "#",
+        linkedin: "#",
+      },
+    },
+  ],
+};
 
-const Doctors = () => {
+const Doctors = ({ lang }) => {
+  const doctors = doctorsData[lang] || doctorsData.en;
+
   return (
     <section className="py-20 bg-white-custom">
       <div className="mx-auto container px-6">
         <div className="mx-auto max-w-3xl mb-16 text-center">
           <h2 className="font-bold text-3xl mb-4">
-            Meet Our <span className="text-medical-gradient">Doctors</span>
+            {lang === "hi" ? "हमारे डॉक्टरों से मिलें" : "Meet Our "}
+            <span className="text-medical-gradient">
+              {lang === "hi" ? "" : "Doctors"}
+            </span>
           </h2>
           <p className="text-gray-600">
-            At Sharda Clinic, our lead doctor and medical team are dedicated to
-            providing advanced, patient-centered healthcare with compassion and
-            expertise.
+            {lang === "hi"
+              ? "शारदा क्लिनिक में, हमारे मुख्य डॉक्टर और मेडिकल टीम सहानुभूतिपूर्ण और विशेषज्ञता के साथ उन्नत, रोगी-केंद्रित स्वास्थ्य सेवा प्रदान करने के लिए समर्पित हैं।"
+              : "At Sharda Clinic, our lead doctor and medical team are dedicated to providing advanced, patient-centered healthcare with compassion and expertise."}
           </p>
         </div>
 
@@ -50,7 +81,7 @@ const Doctors = () => {
           {doctors.map((doc) => (
             <div
               key={doc.id}
-              className="bg-white shadow-lg rounded-xl hover:shadow-xl transition-shadow border border-gray-200 overflow-hidden"
+              className="bg-white shadow-lg rounded-xl hover:shadow-xl transition-shadow border border-gray-200 overflow-hidden flex flex-col justify-center items-center"
             >
               {/* Image */}
               {doc.img && (

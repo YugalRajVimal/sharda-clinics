@@ -35,7 +35,7 @@ const Navbar = ({ lang, setLang }) => {
 
   return (
     <nav
-      className={`w-full fixed px-6 py-4 transition-all duration-300 z-50 ${
+      className={`w-screen fixed px-6 py-4 transition-all duration-300 z-50 ${
         isScrolled ? "bg-white shadow-md" : "bg-transparent"
       }`}
     >

@@ -18,7 +18,10 @@ const BlogsPage = ({ lang }) => {
           import.meta.env.VITE_API_URL
         }/api/admin/blogs?page=${pageNum}&limit=${limit}`
       );
-      return response.data;
+      return {
+        blogs: Array.isArray(response.data?.blogs) ? response.data.blogs : [],
+        totalPages: Number(response.data?.totalPages) || 1,
+      };
     } catch (error) {
       console.error("Failed to fetch blogs:", error);
       toast.error("Failed to fetch blogs");
@@ -31,8 +34,10 @@ const BlogsPage = ({ lang }) => {
     setLoading(true);
     try {
       const data = await getUploadedBlogs(pageNum);
-      setBlogs((prev) => [...prev, ...data?.blogs]);
-      setTotalPages(data?.totalPages || 1);
+      const newBlogs = Array.isArray(data?.blogs) ? data.blogs : [];
+
+      setBlogs((prev) => [...prev, ...newBlogs]);
+      setTotalPages(Number(data?.totalPages) || 1);
     } catch (err) {
       console.error(err);
       toast.error("Failed to fetch blogs");

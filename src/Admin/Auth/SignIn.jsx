@@ -22,6 +22,7 @@ export default function SignIn() {
   const handleGetOTP = async () => {
     clearAlert();
     if (!email) {
+      console.log("Validation Error: Email is empty."); // Added console.log
       return setAlert({
         isEnable: true,
         variant: "error",
@@ -30,13 +31,18 @@ export default function SignIn() {
       });
     }
 
-    console.log(import.meta.env.VITE_API_URL);
+    console.log("API URL:", import.meta.env.VITE_API_URL); // Existing console.log, kept for context
+    console.log("Attempting to send OTP for email:", email); // Added console.log
 
     try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/admin/signin`,
-        { email }
-      );
+        const api = axios.create({
+            baseURL: import.meta.env.VITE_API_URL + "/api",
+            headers: { "Content-Type": "application/json" },
+          });
+          
+          const res = await api.post("/admin/signin", { email });
+          
+      console.log("OTP request successful. Response:", res.data); // Added console.log
 
       setAlert({
         isEnable: true,
@@ -46,6 +52,7 @@ export default function SignIn() {
       });
       setIsOTPFormVisible(true);
     } catch (err) {
+      console.error("Error sending OTP:", err); // Added console.log for error
       setAlert({
         isEnable: true,
         variant: "error",

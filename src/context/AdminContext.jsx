@@ -220,6 +220,70 @@ export const AdminProvider = ({ children }) => {
     }
   };
 
+  const uploadData = async (file, title, description) => {
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+
+    if (file) {
+      formData.append("file", file); // can be image OR video
+    }
+
+    const adminToken = localStorage.getItem("admin-token");
+
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/admin/add-video`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: adminToken,
+          },
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      console.error("Upload Failed:", error);
+      toast.error("Failed to upload blog");
+      return false;
+    }
+  };
+
+  const getUploadedData = async () => {
+    const adminToken = localStorage.getItem("admin-token");
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/admin/videos`,
+        {
+          headers: { Authorization: adminToken },
+        }
+      );
+      return response.data.videos;
+    } catch (error) {
+      console.error("Failed to fetch blogs:", error);
+      toast.error("Failed to fetch blogs");
+      return [];
+    }
+  };
+
+  const deleteData = async (videoId) => {
+    const adminToken = localStorage.getItem("admin-token");
+    try {
+      const response = await axios.delete(
+        `${import.meta.env.VITE_API_URL}/api/admin/video/${videoId}`,
+        {
+          headers: { Authorization: adminToken },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
+
   const getUploadedVideos = async () => {
     const adminToken = localStorage.getItem("admin-token");
     try {
@@ -320,6 +384,9 @@ export const AdminProvider = ({ children }) => {
         uploadBlog,
         getUploadedBlogs,
         deleteBlog,
+        uploadData,
+        getUploadedData,
+        deleteData,
       }}
     >
       {children}

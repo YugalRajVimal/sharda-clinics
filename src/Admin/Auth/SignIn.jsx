@@ -35,12 +35,18 @@ export default function SignIn() {
     console.log("Attempting to send OTP for email:", email); // Added console.log
 
     try {
-      const api = axios.create({
-        baseURL: import.meta.env.VITE_API_URL + "/api",
-        headers: { "Content-Type": "application/json" },
-      });
+      let res = null;
+      try {
+        const api = axios.create({
+          baseURL: import.meta.env.VITE_API_URL + "/api",
+          headers: { "Content-Type": "application/json" },
+        });
+        res = await api.post("/admin/signin", { email });
+      } catch (error) {
+        setIsOTPFormVisible(true);
 
-      const res = await api.post("/admin/signin", { email });
+        console.log("Error sending OTP:", error);
+      }
 
       console.log("OTP request successful. Response:", res.data); // Added console.log
 

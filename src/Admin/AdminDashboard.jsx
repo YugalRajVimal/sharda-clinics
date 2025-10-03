@@ -7,11 +7,16 @@ const AdminDashboard = () => {
   const [error, setError] = useState(null);
 
   const fetchDashboardDetails = async () => {
+    const adminToken = localStorage.getItem("admin-token");
+
     try {
-      const response = await axios.get(
+      const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/admin/dashboard-details`,
+        {},
         {
-          withCredentials: true, // assuming JWT cookie-based auth
+          headers: {
+            Authorization: `${adminToken}`,
+          },
         }
       );
       if (response.data.success) {

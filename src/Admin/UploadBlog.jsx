@@ -53,11 +53,10 @@ export default function UploadBlog() {
     if (loader.current) observer.observe(loader.current);
 
     return () => {
-        if (loader.current) {
-          observer.unobserve(loader.current);
-        }
-      };
-      
+      if (loader.current) {
+        observer.unobserve(loader.current);
+      }
+    };
   }, [loader, page, totalPages]);
 
   const handleFileChange = (e) => {
@@ -92,7 +91,9 @@ export default function UploadBlog() {
   const handleDeleteBlog = async (blogId) => {
     if (!blogId) return toast.error("Blog ID is required to delete a blog");
 
-    const isConfirmed = window.confirm("Are you sure you want to delete this blog?");
+    const isConfirmed = window.confirm(
+      "Are you sure you want to delete this blog?"
+    );
     if (!isConfirmed) {
       return; // User cancelled the deletion
     }
@@ -113,54 +114,59 @@ export default function UploadBlog() {
   };
 
   return (
+    <>
+      <h1 className="my-6 text-3xl font-serif text-center w-full border-b-2 border-black">
+        Admin Panel
+      </h1>
     <div className="w-full flex flex-col pt-20 items-center px-6">
       {/* Upload Input */}
-      <input
-        type="file"
-        id="upload-file"
-        accept="video/*,image/*"
-        className="hidden"
-        onChange={handleFileChange}
-      />
-      <label
-        htmlFor="upload-file"
-        className="cursor-pointer mb-6 flex items-center justify-center gap-2 px-4 py-2 rounded-lg border-2 border-dashed border-gray-300 hover:border-blue-500 text-gray-600 hover:text-blue-600 transition font-medium"
-      >
-        + Upload Video / Image (Optional)
-      </label>
+
+      <h1 className="mb-4 text-2xl">Upload Blogs</h1>
 
       {/* Preview Section */}
       <div className="w-full max-w-7xl bg-white dark:bg-zinc-300 rounded-lg shadow-lg p-4 mb-6">
-        {preview ? (
-          selectedFile.type.startsWith("video/") ? (
-            <video src={preview} controls className="w-full rounded-lg mb-4" />
-          ) : (
-            <img
-              src={preview}
-              alt="preview"
-              className="w-full rounded-lg mb-4"
-            />
-          )
-        ) : (
-          <div className="w-full py-4 flex items-center justify-center bg-gray-100 text-gray-500 rounded-lg mb-4 text-center">
-            Select an image or video to preview (optional)
-          </div>
-        )}
-
+        <label
+          htmlFor="blog-title"
+          className="block text-base font-medium text-black mb-1"
+        >
+          Title
+        </label>
         <input
           type="text"
+          id="blog-title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Enter title..."
           className="w-full border text-black rounded-md p-2 mb-3"
         />
 
+        <label
+          htmlFor="blog-description"
+          className="block text-base font-medium text-black mb-1"
+        >
+          Description
+        </label>
         <textarea
+          id="blog-description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Enter description..."
           className="w-full border text-black rounded-md p-2 mb-3"
         />
+
+        <input
+          type="file"
+          id="upload-file"
+          accept="video/*,image/*"
+          className="hidden"
+          onChange={handleFileChange}
+        />
+        <label
+          htmlFor="upload-file"
+          className="cursor-pointer mb-6 w-fit bg-blue-900 text-white  flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-white-500  hover:bg-blue-400 hover:text-white transition font-medium"
+        >
+          + Upload Video / Image (Optional)
+        </label>
 
         <button
           onClick={handleUpload}
@@ -169,6 +175,18 @@ export default function UploadBlog() {
           Upload
         </button>
       </div>
+
+      {preview ? (
+        selectedFile.type.startsWith("video/") ? (
+          <video src={preview} controls className="w-full rounded-lg mb-4" />
+        ) : (
+          <img src={preview} alt="preview" className="w-full rounded-lg mb-4" />
+        )
+      ) : (
+        <div className="w-full py-4 flex items-center justify-center bg-gray-100 text-gray-500 rounded-lg mb-4 text-center">
+          Select an image or video to preview (optional)
+        </div>
+      )}
 
       {/* Previous Uploads */}
       <div className="flex justify-between w-full max-w-5xl items-center mb-4">
@@ -271,5 +289,6 @@ export default function UploadBlog() {
         </div>
       )}
     </div>
+    </>
   );
 }

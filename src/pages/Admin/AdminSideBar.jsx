@@ -17,6 +17,7 @@ import {
   FaComments,
   FaVideo,
   FaFileUpload,
+  FaImage,
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AdminAuthContext } from "../../context/AdminAuthContext";
@@ -75,25 +76,32 @@ const AdminSidePanel = ({ setSelectedPage, selectedPage }) => {
       </div>
 
       <ul className="space-y-2 px-2 ">
-        {/* <MenuItem
+        <MenuItem
           icon={FaHome}
           label="Dashboard"
           path="/admin/panel"
           pageKey="Dashboard"
-        /> */}
+        />
 
         <MenuItem
           icon={FaUpload}
-          label="Upload Blog"
+          label="Upload Image Article"
           path="/admin/panel/upload-blog"
           pageKey="UploadBlog"
         />
 
         <MenuItem
-          icon={FaFileUpload}
-          label="Upload Data"
+          icon={FaVideo}
+          label="Upload Video Article"
           path="/admin/panel/upload-data"
           pageKey="UploadData"
+        />
+
+        <MenuItem
+          icon={FaImage}
+          label="Upload Data"
+          path="/admin/panel/upload-image-article"
+          pageKey="UploadImageArticle"
         />
 
         {/* Logout */}

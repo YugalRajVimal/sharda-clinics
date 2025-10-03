@@ -98,14 +98,14 @@ const BlogsComp = ({ lang }) => {
 
   return (
     <div className=" px-4 sm:px-6 lg:px-20 py-10 min-h-screen bg-gray-50">
-      <h1 className="text-3xl font-bold mb-6">Blogs</h1>
+      <h1 className="text-3xl font-bold mb-6">Articles</h1>
 
       {loading && <p className="text-gray-500">Loading blogs...</p>}
 
       {/* Video Blogs */}
       {videoBlogs.length > 0 && (
         <section className="mb-12 ">
-          <h2 className="text-2xl font-semibold mb-4">🎥 Video Blogs</h2>
+          <h2 className="text-2xl font-semibold mb-4">Video Articles</h2>
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={20}
@@ -124,7 +124,7 @@ const BlogsComp = ({ lang }) => {
       {/* Image Blogs */}
       {imageBlogs.length > 0 && (
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">🖼️ Image Blogs</h2>
+          <h2 className="text-2xl font-semibold mb-4">Image Articles</h2>
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={20}

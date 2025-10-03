@@ -18,17 +18,17 @@ const doctorsData = {
         linkedin: "#",
       },
     },
-    {
-      id: 2,
-      name: "Sharda Clinic Team",
-      specialty: "Specialists & Supporting Doctors",
-      desc: "A multidisciplinary team of experienced physicians and specialists ensuring quality care in cardiology, neurology, diabetes, hypertension, and general medicine.",
-      socials: {
-        facebook: "#",
-        twitter: "#",
-        linkedin: "#",
-      },
-    },
+    // {
+    //   id: 2,
+    //   name: "Sharda Clinic Team",
+    //   specialty: "Specialists & Supporting Doctors",
+    //   desc: "A multidisciplinary team of experienced physicians and specialists ensuring quality care in cardiology, neurology, diabetes, hypertension, and general medicine.",
+    //   socials: {
+    //     facebook: "#",
+    //     twitter: "#",
+    //     linkedin: "#",
+    //   },
+    // },
   ],
   hi: [
     {
@@ -43,17 +43,17 @@ const doctorsData = {
         linkedin: "#",
       },
     },
-    {
-      id: 2,
-      name: "शारदा क्लिनिक टीम",
-      specialty: "विशेषज्ञ और सहायक डॉक्टर",
-      desc: "अनुभवी चिकित्सकों और विशेषज्ञों की बहुविध टीम, जो कार्डियोलॉजी, न्यूरोलॉजी, डायबिटीज, उच्च रक्तचाप और सामान्य चिकित्सा में गुणवत्तापूर्ण देखभाल सुनिश्चित करती है।",
-      socials: {
-        facebook: "#",
-        twitter: "#",
-        linkedin: "#",
-      },
-    },
+    // {
+    //   id: 2,
+    //   name: "शारदा क्लिनिक टीम",
+    //   specialty: "विशेषज्ञ और सहायक डॉक्टर",
+    //   desc: "अनुभवी चिकित्सकों और विशेषज्ञों की बहुविध टीम, जो कार्डियोलॉजी, न्यूरोलॉजी, डायबिटीज, उच्च रक्तचाप और सामान्य चिकित्सा में गुणवत्तापूर्ण देखभाल सुनिश्चित करती है।",
+    //   socials: {
+    //     facebook: "#",
+    //     twitter: "#",
+    //     linkedin: "#",
+    //   },
+    // },
   ],
 };
 
@@ -65,9 +65,9 @@ const Doctors = ({ lang }) => {
       <div className="mx-auto container px-6">
         <div className="mx-auto max-w-3xl mb-16 text-center">
           <h2 className="font-bold text-3xl mb-4">
-            {lang === "hi" ? "हमारे डॉक्टरों से मिलें" : "Meet Our "}
+            {lang === "hi" ? "हमारे डॉक्टर से मिलें" : "Meet Our "}
             <span className="text-medical-gradient">
-              {lang === "hi" ? "" : "Doctors"}
+              {lang === "hi" ? "" : "Doctor"}
             </span>
           </h2>
           <p className="text-gray-600">
@@ -77,7 +77,7 @@ const Doctors = ({ lang }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:grid-cols-2 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1  gap-8  max-w-3xl mx-auto">
           {doctors.map((doc) => (
             <div
               key={doc.id}

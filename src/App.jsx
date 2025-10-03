@@ -21,6 +21,7 @@ import AdminProtectedRoute from "./ProtectedRoutes/AdminProtectedRoute";
 import { ToastContainer } from "react-toastify";
 import { UploadCloud } from "lucide-react";
 import UploadData from "./Admin/UploadData";
+import UploadImageArticle from "./Admin/UploadImageArticle";
 
 function App() {
   const [lang, setLang] = useState("hi");
@@ -55,9 +56,11 @@ function App() {
               </AdminProtectedRoute>
             }
           >
-            <Route index element={<Navigate to="upload-blog" replace />} />
+            <Route index element={<AdminDashboard />} />
             <Route path="upload-blog" element={<UploadBlog />} />
             <Route path="upload-data" element={<UploadData />} />
+            <Route path="upload-image-article" element={<UploadImageArticle/>} />
+
           </Route>
 
           <Route path="signin" element={<SignIn />} />

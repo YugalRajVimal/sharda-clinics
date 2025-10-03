@@ -6,16 +6,9 @@ import {
   MdOutlineLocationOn,
 } from "react-icons/md";
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
+import { toast } from "react-toastify"; // Changed from react-hot-toast
 
 const Contact = ({ lang }) => {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [countryCode, setCountryCode] = useState("India (+91)");
-  const [phone, setPhone] = useState("");
-  const [company, setCompany] = useState("");
-  const [message, setMessage] = useState("");
-
   const texts = {
     en: {
       heading: "Let's Start a Conversation",
@@ -63,33 +56,204 @@ const Contact = ({ lang }) => {
     },
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const formData = { fullName, email, countryCode, phone, company, message };
-    toast.loading(lang === "hi" ? "संदेश भेजा जा रहा है..." : "Sending your message...");
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [countryCode, setCountryCode] = useState("India (+91)");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+  const [consent, setConsent] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Check consent
+    if (!consent) {
+      toast.error(
+        lang === "hi"
+          ? "कृपया गोपनीयता नीति से सहमत हों।"
+          : "Please accept the privacy policy."
+      );
+      return;
+    }
+
+    // ✅ Validation rules
+
+    // 1. Name length
+    if (fullName.length > 30) {
+      toast.error(
+        lang === "hi"
+          ? "नाम 30 अक्षरों से अधिक नहीं होना चाहिए।"
+          : "Name must not exceed 30 characters."
+      );
+      return;
+    }
+
+    // 2. Email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error(
+        lang === "hi"
+          ? "कृपया मान्य ईमेल पता दर्ज करें।"
+          : "Please enter a valid email address."
+      );
+      return;
+    }
+
+    // 3. Phone: 10 digits, starts with 6/7/8/9
+    const phoneRegex = /^[6-9]\d{9}$/;
+    if (!phoneRegex.test(phone)) {
+      toast.error(
+        lang === "hi"
+          ? "कृपया एक मान्य 10 अंकों का मोबाइल नंबर दर्ज करें जो 6, 7, 8 या 9 से शुरू होता हो।"
+          : "Please enter a valid 10-digit phone number starting with 6, 7, 8, or 9."
+      );
+      return;
+    }
+
+    // 4. Message word limit (500 words max)
+    const wordCount = message.trim().split(/\s+/).length;
+    if (wordCount > 500) {
+      toast.error(
+        lang === "hi"
+          ? "संदेश 500 शब्दों से अधिक नहीं होना चाहिए।"
+          : "Message must not exceed 500 words."
+      );
+      return;
+    }
+
+    // ✅ Data to send
+    const formData = {
+      fullName,
+      email,
+      countryCode,
+      phone,
+      company: "Appointment Form",
+      message,
+    };
+
+    // Toast messages
+    const loadingMsg =
+      lang === "hi" ? "अपॉइंटमेंट भेजा जा रहा है..." : "Sending appointment...";
+    const successMsg =
+      lang === "hi"
+        ? "अपॉइंटमेंट सफलतापूर्वक भेजा गया।"
+        : "Appointment sent successfully.";
+    const errorMsg =
+      lang === "hi" ? "भेजने में विफल ❌" : "Failed to send appointment ❌";
+    const somethingWrongMsg =
+      lang === "hi" ? "कुछ गलत हुआ।" : "Something went wrong.";
+
+    const toastId = toast.loading(loadingMsg);
 
     try {
       const response = await axios.post(
-        "https://peswani-pixels-mailer.onrender.com/send-mailkkkkh",
+        "https://api.shardaclinics.in/send-mail",
         formData
       );
-      toast.dismiss();
+
       if (response.status === 200) {
-        toast.success(lang === "hi" ? "संदेश सफलतापूर्वक भेजा गया।" : "Message sent successfully.");
+        toast.update(toastId, {
+          render: successMsg,
+          type: "success",
+          isLoading: false,
+          autoClose: 3000,
+        });
+
+        // Reset form
         setFullName("");
         setEmail("");
         setCountryCode("India (+91)");
         setPhone("");
-        setCompany("");
         setMessage("");
+        setConsent(false);
       } else {
-        toast.error(lang === "hi" ? "कुछ गलत हो गया।" : "Something went wrong.");
+        toast.update(toastId, {
+          render: somethingWrongMsg,
+          type: "error",
+          isLoading: false,
+          autoClose: 3000,
+        });
       }
-    } catch (error) {
-      toast.dismiss();
-      toast.error(lang === "hi" ? "संदेश भेजने में विफल ❌" : "Failed to send message ❌");
+    } catch (err) {
+      toast.update(toastId, {
+        render: errorMsg,
+        type: "error",
+        isLoading: false,
+        autoClose: 3000,
+      });
     }
   };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!consent) {
+  //     toast.error(
+  //       lang === "hi"
+  //         ? "कृपया गोपनीयता नीति से सहमत हों।"
+  //         : "Please accept the privacy policy."
+  //     );
+  //     return;
+  //   }
+
+  //   const formData = {
+  //     fullName,
+  //     email,
+  //     countryCode,
+  //     phone,
+  //     company: "Appointment Form", // static label
+  //     message,
+  //   };
+
+  //   const loadingMsg =
+  //     lang === "hi" ? "अपॉइंटमेंट भेजा जा रहा है..." : "Sending appointment...";
+  //   const successMsg =
+  //     lang === "hi"
+  //       ? "अपॉइंटमेंट सफलतापूर्वक भेजा गया।"
+  //       : "Appointment sent successfully.";
+  //   const errorMsg =
+  //     lang === "hi" ? "भेजने में विफल ❌" : "Failed to send appointment ❌";
+  //   const somethingWrongMsg =
+  //     lang === "hi" ? "कुछ गलत हुआ।" : "Something went wrong.";
+
+  //   const toastId = toast.loading(loadingMsg); // Use toast.loading and get toastId
+
+  //   try {
+  //     const response = await axios.post(
+  //       "https://api.shardaclinics.in/send-mail",
+  //       formData
+  //     );
+
+  //     if (response.status === 200) {
+  //       toast.update(toastId, {
+  //         render: successMsg,
+  //         type: "success",
+  //         isLoading: false,
+  //         autoClose: 3000,
+  //       }); // Update existing toast
+  //       // Reset form
+  //       setFullName("");
+  //       setEmail("");
+  //       setCountryCode("India (+91)");
+  //       setPhone("");
+  //       setMessage("");
+  //       setConsent(false);
+  //     } else {
+  //       toast.update(toastId, {
+  //         render: somethingWrongMsg,
+  //         type: "error",
+  //         isLoading: false,
+  //         autoClose: 3000,
+  //       }); // Update existing toast
+  //     }
+  //   } catch (err) {
+  //     toast.update(toastId, {
+  //       render: errorMsg,
+  //       type: "error",
+  //       isLoading: false,
+  //       autoClose: 3000,
+  //     }); // Update existing toast
+  //   }
+  // };
 
   const contactInfo = {
     email: "shardaclinicagra@gmail.com",
@@ -102,7 +266,6 @@ const Contact = ({ lang }) => {
 
   return (
     <div className="pt-20 px-4 md:px-6 lg:px-12">
-      <Toaster position="top-right" reverseOrder={false} />
       <section className="py-12 md:py-24">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row gap-12">
@@ -114,12 +277,16 @@ const Contact = ({ lang }) => {
               <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 font-montserrat">
                 {texts[lang].heading}
               </h3>
-              <p className="text-gray-light mb-6 font-roboto">{texts[lang].subText}</p>
+              <p className="text-gray-light mb-6 font-roboto">
+                {texts[lang].subText}
+              </p>
 
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block mb-2 font-semibold">{texts[lang].fullName}</label>
+                    <label className="block mb-2 font-semibold">
+                      {texts[lang].fullName}
+                    </label>
                     <input
                       type="text"
                       placeholder={texts[lang].fullNamePlaceholder}
@@ -130,7 +297,10 @@ const Contact = ({ lang }) => {
                     />
                   </div>
                   <div>
-                    <label className="block mb-2 font-semibold">{texts[lang].email}</label>
+                    <label className="block mb-2 font-semibold">
+                      {texts[lang].email}
+                    </label>
+
                     <input
                       type="email"
                       placeholder={texts[lang].emailPlaceholder}
@@ -144,7 +314,9 @@ const Contact = ({ lang }) => {
 
                 <div className="flex gap-4 items-end">
                   <div className="flex flex-col">
-                    <label className="mb-2 font-semibold">{texts[lang].phoneNumber}</label>
+                    <label className="mb-2 font-semibold">
+                      {texts[lang].phoneNumber}
+                    </label>
                     <select
                       value={countryCode}
                       onChange={(e) => setCountryCode(e.target.value)}
@@ -156,7 +328,9 @@ const Contact = ({ lang }) => {
                     </select>
                   </div>
                   <div className="flex-1 flex flex-col">
-                    <label className="mb-2 font-semibold invisible">{texts[lang].phoneNumber}</label>
+                    <label className="mb-2 font-semibold invisible">
+                      {texts[lang].phoneNumber}
+                    </label>
                     <input
                       type="text"
                       placeholder={texts[lang].phonePlaceholder}
@@ -169,7 +343,9 @@ const Contact = ({ lang }) => {
                 </div>
 
                 <div>
-                  <label className="block mb-2 font-semibold">{texts[lang].message}</label>
+                  <label className="block mb-2 font-semibold">
+                    {texts[lang].message}
+                  </label>
                   <textarea
                     rows={4}
                     placeholder={texts[lang].messagePlaceholder}
@@ -179,44 +355,59 @@ const Contact = ({ lang }) => {
                   ></textarea>
                 </div>
 
+                <div className="flex items-start">
+                  <input
+                    type="checkbox"
+                    id="consent"
+                    checked={consent}
+                    onChange={(e) => setConsent(e.target.checked)}
+                    className="mt-1 mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                  />
+                  <label htmlFor="consent" className="text-sm text-gray-700">
+                    {lang === "hi"
+                      ? "मैं शारदा क्लिनिक की गोपनीयता नीति से सहमत हूँ।"
+                      : "I agree to Sharda Clinic's privacy policy."}
+                  </label>
+                </div>
+
                 <button
                   type="submit"
-                  className="w-full mt-4 flex items-center justify-center gap-3 border border-blue-500 text-black hover:bg-blue-500 hover:text-black px-5 py-2 rounded-md transition-all duration-300"
+                  className="w-full mt-4 flex items-center justify-center gap-3 border border-blue-500 text-blue-600 hover:bg-blue-500 hover:text-white px-5 py-2 rounded-md transition-all duration-300"
                 >
                   <FiSend size={18} />
-                  <span className="font-semibold text-sm">{texts[lang].sendButton}</span>
+                  <span className="font-semibold text-sm">
+                    {texts[lang].sendButton}
+                  </span>
                 </button>
               </form>
             </div>
 
             {/* Contact Info Section */}
             <div className="flex-1 bg-white p-6 md:p-8 rounded-lg shadow-lg border border-danger/20">
-              <h3 className="text-2xl font-bold font-montserrat mb-6">{texts[lang].contactInfo}</h3>
+              <h3 className="text-2xl font-bold font-montserrat mb-6">
+                {texts[lang].contactInfo}
+              </h3>
               <div className="space-y-6">
                 <div className="flex items-start">
                   <MdOutlineMail className="w-6 h-6 text-danger mr-4 flex-shrink-0" />
                   <div>
-                    <h4 className="font-medium font-montserrat mb-1">{texts[lang].emailLabel}</h4>
-                    <p className="text-gray-light font-roboto">{contactInfo.email}</p>
+                    <h4 className="font-medium font-montserrat mb-1">
+                      {texts[lang].emailLabel}
+                    </h4>
+                    <p className="text-gray-light font-roboto">
+                      {contactInfo.email}
+                    </p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
                   <MdOutlinePhone className="w-6 h-6 text-danger mr-4 flex-shrink-0" />
                   <div>
-                    <h4 className="font-medium font-montserrat mb-1">{texts[lang].phoneLabel}</h4>
-                    <p className="text-gray-light font-roboto">{contactInfo.phone}</p>
+                    <h4 className="font-medium font-montserrat mb-1">
+                      {texts[lang].phoneLabel}
+                    </h4>
                     <p className="text-gray-light font-roboto">
-                      <span>Clinic: </span>
-                      <span>+91 7742863725</span>
-                    </p>
-                    <p className="text-gray-light font-roboto">
-                      <span>Dr.Manoj Yadav: </span>
-                      <span>+91 7742863720</span>
-                    </p>
-                    <p className="text-gray-light font-roboto">
-                      <span>Dr.Rahul Mehra: </span>
-                      <span>+91 7742863721</span>
+                      {contactInfo.phone}
                     </p>
                   </div>
                 </div>
@@ -224,14 +415,20 @@ const Contact = ({ lang }) => {
                 <div className="flex items-start">
                   <MdOutlineLocationOn className="w-6 h-6 text-danger mr-4 flex-shrink-0" />
                   <div>
-                    <h4 className="font-medium font-montserrat mb-1">{texts[lang].locationLabel}</h4>
-                    <p className="text-gray-light font-roboto">{contactInfo.location.address1}</p>
+                    <h4 className="font-medium font-montserrat mb-1">
+                      {texts[lang].locationLabel}
+                    </h4>
+                    <p className="text-gray-light font-roboto">
+                      {contactInfo.location.address1}
+                    </p>
                   </div>
                 </div>
               </div>
 
               <div className="mt-8">
-                <h4 className="font-medium font-montserrat mb-2">{texts[lang].workingHours}</h4>
+                <h4 className="font-medium font-montserrat mb-2">
+                  {texts[lang].workingHours}
+                </h4>
                 <p className="text-gray-light font-roboto whitespace-pre-line">
                   {texts[lang].workingHoursText}
                 </p>

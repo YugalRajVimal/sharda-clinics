@@ -3,27 +3,26 @@ import React from "react";
 const About = ({ lang }) => {
   const texts = {
     title: {
-      en: "About Sharda Clinic",
-      hi: "शारदा क्लिनिक के बारे में",
+      en: "About (Dr.) Vishwa Deepak",
+      hi: "डॉ. विश्व दीपक के बारे में",
     },
+
     tagline: {
       en: "Trusted Healthcare, Compassionate Care — Right Here in Agra.",
       hi: "विश्वसनीय स्वास्थ्य सेवा, सहानुभूतिपूर्ण देखभाल — आगरा में।",
     },
     paragraphs: {
       en: [
-        "Sharda Clinic, led by Maj (Dr.) Vishwa Deepak (Retd.), is a premier healthcare facility in Agra, Uttar Pradesh. We are dedicated to providing personalized and holistic care, combining years of medical expertise with a patient-centered approach.",
-        "Our clinic specializes in managing a wide range of conditions including critical care, chronic illnesses, musculoskeletal problems, diabetes, hypertension, and holistic wellness therapies. Every patient receives an individualized treatment plan to ensure optimal health outcomes.",
-        "At Sharda Clinic, we believe that true healing comes from a combination of modern medical practice, traditional knowledge, and compassionate care. Our team is committed to guiding patients through every step of their healthcare journey.",
-        "From preventive care and disease management to rehabilitation and lifestyle guidance, we aim to restore balance, enhance immunity, and improve the overall quality of life for our patients.",
-        "Our services include consultations, diagnostic support, chronic disease management, musculoskeletal care, respiratory care, and wellness programs. We strive to ensure that each patient feels confident, cared for, and supported at every visit.",
+        "Maj (Dr.) Vishwa Deepak (Retd.) is a highly respected physician with decades of experience in delivering trusted, compassionate, and holistic healthcare. A retired Army doctor, he brings the discipline, precision, and dedication of military medical service into civilian practice, ensuring that patients at Sharda Clinic receive the highest standards of care.",
+        "Throughout his career, Dr. Deepak has been deeply committed to patient well-being, specializing in critical care, chronic disease management, musculoskeletal conditions, diabetes, hypertension, and preventive healthcare. His approach integrates modern medical advancements with traditional wisdom, focusing not just on treating illness but also on improving lifestyle, immunity, and overall quality of life.",
+        "Known for his patient-first philosophy, Dr. Deepak takes the time to listen, understand, and design personalized treatment plans that address the unique needs of each individual. His compassionate and holistic approach has earned him the trust of countless patients in Agra and beyond.",
+        "Beyond clinical care, he is passionate about guiding people toward healthier living through preventive strategies, rehabilitation programs, and wellness therapies. His vision for Sharda Clinic is to provide a comprehensive healthcare destination where patients find not only treatment but also empathy, guidance, and lasting solutions.",
       ],
       hi: [
-        "शारदा क्लिनिक, मेजर (डॉ.) विश्व दीपक (सेवानिवृत्त) के नेतृत्व में, आगरा, उत्तर प्रदेश में एक प्रमुख स्वास्थ्य सुविधा है। हम व्यक्तिगत और समग्र देखभाल प्रदान करने के लिए प्रतिबद्ध हैं, जो वर्षों के चिकित्सा अनुभव और रोगी-केंद्रित दृष्टिकोण का संयोजन है।",
-        "हमारा क्लिनिक गंभीर देखभाल, पुरानी बीमारियों, मस्कुलोस्केलेटल समस्याओं, मधुमेह, उच्च रक्तचाप और समग्र कल्याण चिकित्सा सहित कई स्थितियों के प्रबंधन में विशेषज्ञ है। प्रत्येक रोगी को सर्वोत्तम स्वास्थ्य परिणाम सुनिश्चित करने के लिए व्यक्तिगत उपचार योजना दी जाती है।",
-        "शारदा क्लिनिक में, हम मानते हैं कि सच्चा उपचार आधुनिक चिकित्सा अभ्यास, पारंपरिक ज्ञान और सहानुभूतिपूर्ण देखभाल के संयोजन से आता है। हमारी टीम रोगियों को उनके स्वास्थ्य यात्रा के हर चरण में मार्गदर्शन करने के लिए प्रतिबद्ध है।",
-        "रोकथाम, रोग प्रबंधन, पुनर्वास और जीवनशैली मार्गदर्शन से लेकर, हम अपने रोगियों के लिए संतुलन बहाल करने, प्रतिरक्षा बढ़ाने और जीवन की गुणवत्ता में सुधार करने का लक्ष्य रखते हैं।",
-        "हमारी सेवाओं में परामर्श, निदान सहायता, पुरानी बीमारी प्रबंधन, मस्कुलोस्केलेटल देखभाल, श्वसन देखभाल और वेलनेस कार्यक्रम शामिल हैं। हम यह सुनिश्चित करने का प्रयास करते हैं कि प्रत्येक रोगी हर दौरे पर आत्मविश्वासी, देखभाल किया गया और समर्थ महसूस करे।",
+        "मेजर (डॉ.) विश्व दीपक (से.नि.) एक सम्मानित और अनुभवी चिकित्सक हैं, जिन्होंने वर्षों तक समर्पण और करुणा के साथ मरीजों की सेवा की है। आर्मी मेडिकल कॉर्प्स से सेवानिवृत्त होने के बाद उन्होंने सैन्य चिकित्सा सेवा का अनुशासन, निष्ठा और उत्कृष्टता को आमजन की स्वास्थ्य सेवाओं में समर्पित किया है।",
+        "डॉ. दीपक को क्रिटिकल केयर, पुरानी बीमारियों का प्रबंधन, मस्क्युलोस्केलेटल समस्याएँ, डायबिटीज़, हाई ब्लड प्रेशर तथा निवारक स्वास्थ्य देखभाल में विशेष अनुभव है। वे आधुनिक चिकित्सा विज्ञान और पारंपरिक ज्ञान का संतुलित उपयोग कर मरीजों को न केवल उपचार प्रदान करते हैं बल्कि उनकी जीवनशैली, रोग प्रतिरोधक क्षमता और संपूर्ण स्वास्थ्य में भी सुधार पर ध्यान केंद्रित करते हैं।",
+        "उनकी मरीज-प्रथम सोच और करुणामयी व्यवहार उन्हें विशिष्ट बनाते हैं। वे हर मरीज को ध्यान से सुनते हैं, समझते हैं और फिर उसके अनुसार व्यक्तिगत उपचार योजना तैयार करते हैं ताकि सर्वोत्तम स्वास्थ्य परिणाम मिल सकें।",
+        "शारदा क्लिनिक के माध्यम से उनका उद्देश्य एक ऐसा स्वास्थ्य केंद्र स्थापित करना है जहाँ मरीजों को केवल इलाज ही नहीं बल्कि सहानुभूति, मार्गदर्शन और दीर्घकालिक समाधान भी प्राप्त हों।",
       ],
     },
     footer: {

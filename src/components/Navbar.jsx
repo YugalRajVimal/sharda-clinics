@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom"; // Import useLocation
 import { Menu, X } from "lucide-react";
 
 const Navbar = ({ lang, setLang }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation(); // Get current location
 
   // Text for navigation items in Hinglish/Hindi and English
   const navItems = [
@@ -32,6 +33,11 @@ const Navbar = ({ lang, setLang }) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Hide Navbar if the path starts with /admin
+  if (location.pathname.startsWith("/admin")) {
+    return null;
+  }
 
   return (
     <nav

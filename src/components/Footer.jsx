@@ -137,9 +137,12 @@ const Footer = ({ lang }) => {
             <ul className="space-y-2">
               {services.slice(0, 6).map((service, index) => (
                 <li key={index}>
-                  <span className="text-gray-400 transition-colors hover:text-white">
+                  <Link
+                    to="/services"
+                    className="text-gray-400 transition-colors hover:text-white"
+                  >
                     {service}
-                  </span>
+                  </Link>
                 </li>
               ))}
               <li>
@@ -180,7 +183,7 @@ const Footer = ({ lang }) => {
                   </a>
                 </li>
                 <li className="flex items-start group">
-                  <IoLocationSharp className="w-5 h-5 text-white mr-3 mt-0.5 group-hover:animate-pulse" />
+                  <IoLocationSharp className="shrink-0 w-5 h-5 text-white mr-3 mt-0.5 group-hover:animate-pulse" />
                   <span className="text-gray-400 group-hover:text-white transition-colors">
                     {t.address}
                   </span>
@@ -191,9 +194,21 @@ const Footer = ({ lang }) => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between border-gray-800 border-t mt-12 pt-6">
+        <div className="flex flex-col md:flex-row justify-between items-center border-gray-800 border-t mt-12 pt-6">
           <p className="text-white md:text-left text-center">
             © {new Date().getFullYear()} Sharda Clinic, Agra. {t.copyright}
+          </p>
+
+          <p className="md:text-left text-center text-sm">
+            <span className="text-gray-400 mr-1">Our Tech Partner</span>
+            <a
+              href="https://gowappily.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white font-semibold hover:text-gray-300 transition-colors"
+            >
+              GoWappily Infotech
+            </a>
           </p>
 
           <div className="flex justify-center md:justify-start md:mt-0 mt-4 space-x-6">

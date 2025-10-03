@@ -10,7 +10,7 @@ const AdminDashboard = () => {
     const adminToken = localStorage.getItem("admin-token");
 
     try {
-      const response = await axios.post(
+      const response = await axios.get(
         `${import.meta.env.VITE_API_URL}/api/admin/dashboard-details`,
         {},
         {

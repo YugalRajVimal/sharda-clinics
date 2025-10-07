@@ -57,7 +57,16 @@ const BlogsComp = ({ lang }) => {
       <div className="bg-white rounded-2xl shadow-md mb-4 overflow-hidden flex flex-col h-full">
         {/* Media */}
         {blog.videoPath ? (
-          <video src={mediaUrl} className="w-full h-48 object-cover" muted />
+          <video
+          src={mediaUrl}
+          className="w-full h-48 object-cover rounded-lg"
+          autoPlay
+          muted
+          loop
+          controls
+          playsInline
+        />
+        
         ) : blog.imagePath ? (
           <img
             src={mediaUrl}

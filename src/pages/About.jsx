@@ -41,7 +41,7 @@ const About = ({ lang }) => {
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col-reverse md:flex-row gap-12 items-center">
             {/* Text Section */}
-            <div className="md:w-[60%] prose prose-invert max-w-none">
+            <div className="md:w-[60%] mt-20 md:mt-0 prose prose-invert max-w-none">
               <h3 className="text-3xl md:text-4xl font-bold font-montserrat mb-6 tracking-tight">
                 {texts.title[lang]}
               </h3>
@@ -69,7 +69,7 @@ const About = ({ lang }) => {
                 className="w-full h-full object-contain rounded-lg"
               />
 
-              <div className="absolute -bottom-20 md:-bottom-4 -right-4 w-36 h-36 md:w-56 md:h-56 bg-neutral-900 border border-danger/40 rounded-lg p-4 md:p-6 flex items-center justify-center">
+              <div className="absolute -bottom-20 md:-bottom-4 -right-4 w-36 h-36 md:w-56 md:h-56 bg-gradient-to-r from-[#023893] to-[#3ec2ce] border border-danger/40 rounded-lg p-4 md:p-6 flex items-center justify-center">
                 <div className="text-center">
                   <p className="text-3xl md:text-5xl font-bold font-montserrat text-danger shadow-text">
                     15+

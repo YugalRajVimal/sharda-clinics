@@ -29,7 +29,7 @@ const HeroRight = ({ lang }) => {
         <img
           alt="banner"
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 max-w-full h-full mx-auto object-contain"
-          src="/banner0.webp"
+          src="/Home.jpeg"
         />
 
         {/* Floating Card 1 */}

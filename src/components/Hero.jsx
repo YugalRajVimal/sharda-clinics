@@ -44,9 +44,9 @@ const Hero = ({ lang }) => {
   };
 
   return (
-    <section className="relative min-h-screen h-[160vh] md:h-auto" id="home">
-      <div className="absolute inset-0 bg-blue-50">
-        <div className="absolute inset-0 -z-10">
+    <section className="relative bg-blue-50  h-fit py-4  " id="home">
+      <div className=" bg-blue-50 flex justify-center items-center">
+        <div className=" -z-10">
           <svg className="max-w-full h-full opacity-10" viewBox="0 0 800 800">
             <defs>
               <pattern
@@ -67,10 +67,10 @@ const Hero = ({ lang }) => {
           </svg>
         </div>
 
-        <div className="flex justify-center container flex-col mx-auto px-6 py-20 relative z-10">
+        <div className="flex justify-center container flex-col  px-6 py-20 relative z-10">
           <div className="flex items-center flex-col-reverse md:flex-row">
             <div
-              className={`mb-16 md:mb-0 md:w-1/2 transition duration-1000 delay-300 h-[80vh] ${
+              className={` md:w-1/2 transition duration-1000 delay-300 h-[80vh] ${
                 shown
                   ? "opacity-100 translate-x-0"
                   : "opacity-0 -translate-x-12"
@@ -129,9 +129,8 @@ const Hero = ({ lang }) => {
                     <span>{texts.learn[lang]}</span>
                   </Link>
                 </div>
-
-                <Stats />
               </div>
+              <Stats />
             </div>
 
             <HeroRight lang={lang} />

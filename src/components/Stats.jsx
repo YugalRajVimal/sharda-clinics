@@ -2,7 +2,7 @@ import React from "react";
 
 const Stats = ({ lang }) => {
   return (
-    <div className="grid gap-4 grid-cols-3 mt-12">
+    <div className="grid gap-4 grid-cols-3 mt-12 bg-[#eff6ff] w-full">
       <div>
         <div className="text-blue-600 font-bold text-3xl">15+</div>
         <div className="text-gray-500">Years Experience</div>

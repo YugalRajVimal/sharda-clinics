@@ -62,14 +62,14 @@ const About = ({ lang }) => {
             </div>
 
             {/* Image Section */}
-            <div className="w-[80%] md:w-[40%] relative aspect-square md:aspect-auto md:h-[600px]">
+            <div className="w-full md:w-[40%] relative aspect-square md:aspect-auto md:h-[600px]">
               <img
                 src="/Home.jpeg"
                 alt="Sharda Clinic"
                 className="w-full h-full object-contain rounded-lg"
               />
 
-              <div className="absolute -bottom-20 md:-bottom-4 -right-4 w-36 h-36 md:w-56 md:h-56 bg-gradient-to-r from-[#023893] to-[#3ec2ce] border border-danger/40 rounded-lg p-4 md:p-6 flex items-center justify-center">
+              <div className="absolute -bottom-20 md:-bottom-24 -right-4  bg-gradient-to-r from-[#023893] to-[#3ec2ce] border border-danger/40 rounded-lg p-4 md:p-6 flex items-center justify-center">
                 <div className="text-center">
                   <p className="text-3xl md:text-5xl font-bold font-montserrat text-danger shadow-text">
                     15+

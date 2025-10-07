@@ -33,7 +33,7 @@ const HeroRight = ({ lang }) => {
         />
 
         {/* Floating Card 1 */}
-        <div className="flex items-center absolute -right-5 top-0 bg-white p-3 rounded-xl shadow-lg z-20">
+        <div className="flex items-center absolute -right-5 -top-15 md:top-0 bg-white p-3 rounded-xl shadow-lg z-20">
           <div className="mr-3 p-2 rounded-lg bg-green-100">
             <svg
               className="text-green-600 h-6 w-6"
@@ -68,7 +68,7 @@ const HeroRight = ({ lang }) => {
         </div>
 
         {/* Floating Card 2 */}
-        <div className="bg-white shadow-lg rounded-xl absolute p-3 z-20 -bottom-5 -left-5">
+        <div className="bg-white shadow-lg rounded-xl absolute p-3 z-20 -bottom-20 md:-bottom-5 -left-5">
           <div className="flex items-center mb-2">
             <div className="bg-blue-100 rounded-lg mr-3 p-2">
               <svg

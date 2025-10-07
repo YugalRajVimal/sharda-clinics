@@ -92,17 +92,20 @@ const Footer = ({ lang }) => {
             </div>
             <p className="mb-6 text-gray-300">{t.description}</p>
             <div className="flex space-x-4">
-              {[FiInstagram, FiFacebook, FiLinkedin, FiYoutube].map(
-                (Icon, index) => (
+              {[
+                { Icon: FiInstagram, url: "https://www.instagram.com/clinicsharda?igsh=MTFhYzY0NXo0MHNqYQ==" },
+                { Icon: FiFacebook, url: "https://www.facebook.com/share/16sRkC6oES/?mibextid=wwXIfr" },
+              ].map(
+                (social, index) => (
                   <a
                     key={index}
-                    href="/"
+                    href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white transition-colors hover:text-gray-300"
                     onClick={handleLinkClick}
                   >
-                    <Icon size={18} className="h-5 w-5" />
+                    <social.Icon size={18} className="h-5 w-5" />
                   </a>
                 )
               )}

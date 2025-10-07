@@ -22,14 +22,14 @@ const HeroRight = ({ lang }) => {
     >
       <div className="relative h-[60vh]">
         {/* Decorative Elements */}
-        <div className="rounded-full absolute opacity-60 left-4 -top-4 bg-blue-200 h-24 w-24"></div>
-        <div className="rounded-full absolute opacity-60 -bottom-8 right-10 bg-green-200 h-32 w-32"></div>
+        <div className="rounded-full absolute opacity-60 -left-6 -top-4 bg-blue-200 h-24 w-24"></div>
+        <div className="rounded-full absolute opacity-60 -bottom-8 -right-8 bg-green-200 h-32 w-32"></div>
 
         {/* Main Image */}
         <img
           alt="banner"
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 max-w-full h-full mx-auto object-contain"
-          src="/Home.jpeg"
+          src="/banner0.webp"
         />
 
         {/* Floating Card 1 */}

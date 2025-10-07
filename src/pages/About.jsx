@@ -41,7 +41,7 @@ const About = ({ lang }) => {
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col-reverse md:flex-row gap-12 items-center">
             {/* Text Section */}
-            <div className="md:w-[60%] mt-20 md:mt-0 prose prose-invert max-w-none">
+            <div className="md:w-[60%] mt-20 md:mt-0 prose prose-invert max-w-none flex flex-col justify-center items-center">
               <h3 className="text-3xl md:text-4xl font-bold font-montserrat mb-6 tracking-tight">
                 {texts.title[lang]}
               </h3>
@@ -64,7 +64,7 @@ const About = ({ lang }) => {
             {/* Image Section */}
             <div className="w-[80%] md:w-[40%] relative aspect-square md:aspect-auto md:h-[600px]">
               <img
-                src="banner0.webp"
+                src="/Home.jpeg"
                 alt="Sharda Clinic"
                 className="w-full h-full object-contain rounded-lg"
               />

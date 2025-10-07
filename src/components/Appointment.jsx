@@ -250,7 +250,7 @@ const Appointment = ({ lang }) => {
             {/* Left side */}
             <div className="relative lg:w-2/5">
               <img
-                src="/banner0.webp"
+                src="/Home.jpeg"
                 className="w-full h-full object-cover"
                 alt="Doctor with patient"
               />
@@ -263,7 +263,7 @@ const Appointment = ({ lang }) => {
             </div>
 
             {/* Right side */}
-            <div className="bg-white lg:w-3/5 p-8">
+            <div className="bg-white lg:w-3/5 p-8 flex flex-col justify-center items-center">
               <h3 className="font-bold mb-6 text-2xl">{t.formTitle}</h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">

@@ -81,7 +81,7 @@ const BlogsPage = ({ lang }) => {
       </header>
 
       {/* Blog grid: auto layout with dynamic heights */}
-      <main className="grid  grid-cols-1 gap-8 auto-rows-min">
+      <main className="grid  grid-cols-1 gap-20 auto-rows-min">
         {blogs?.map((blog, idx) => {
           const mediaUrl = blog.imagePath
             ? `${import.meta.env.VITE_API_URL}/${blog.imagePath}`
@@ -103,14 +103,14 @@ const BlogsPage = ({ lang }) => {
                   {blog.videoPath ? (
                     <video
                       src={mediaUrl}
-                      className="w-full object-cover rounded-t-2xl"
+                      className="w-full max-h-[60vh] md:max-h-[80vh] object-contain rounded-t-2xl"
                       muted
                     />
                   ) : (
                     <img
                       src={mediaUrl}
                       alt={blog.title}
-                      className="w-full object-cover rounded-t-2xl"
+                      className="w-full max-h-[60vh] md:max-h-[80vh] object-contain rounded-t-2xl"
                     />
                   )}
                 </>

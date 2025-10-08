@@ -29,7 +29,8 @@ const Contact = ({ lang }) => {
       locationLabel: "Location",
       workingHours: "Working Hours",
       workingHoursText:
-        "Monday to Friday: 8:00 AM - 11:00 PM\nSaturday: 9:00 AM - 11:00 PM\nSunday: 9:00 AM - 11:00 PM",
+        "Monday: 1:00 PM – 8:00 PM\nTuesday: 1:00 PM – 8:00 PM\nWednesday: 1:00 PM – 8:00 PM\nThursday: 1:00 PM – 3:00 PM\nFriday: 1:00 PM – 8:00 PM\nSaturday: 1:00 PM – 8:00 PM\nSunday: 10:00 AM – 1:00 PM",
+
       getInTouch: "Get in Touch",
     },
     hi: {
@@ -51,7 +52,8 @@ const Contact = ({ lang }) => {
       locationLabel: "स्थान",
       workingHours: "कार्य समय",
       workingHoursText:
-        "सोमवार से शुक्रवार: 8:00 AM - 11:00 PM\nशनिवार: 9:00 AM - 11:00 PM\nरविवार: 9:00 AM - 11:00 PM",
+        "सोमवार: दोपहर 1 बजे – रात 8 बजे\nमंगलवार: दोपहर 1 बजे – रात 8 बजे\nबुधवार: दोपहर 1 बजे – रात 8 बजे\nगुरुवार: दोपहर 1 बजे – दोपहर 3 बजे\nशुक्रवार: दोपहर 1 बजे – रात 8 बजे\nशनिवार: दोपहर 1 बजे – रात 8 बजे\nरविवार: सुबह 10 बजे – दोपहर 1 बजे",
+
       getInTouch: "संपर्क करें",
     },
   };
@@ -183,77 +185,6 @@ const Contact = ({ lang }) => {
       });
     }
   };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   if (!consent) {
-  //     toast.error(
-  //       lang === "hi"
-  //         ? "कृपया गोपनीयता नीति से सहमत हों।"
-  //         : "Please accept the privacy policy."
-  //     );
-  //     return;
-  //   }
-
-  //   const formData = {
-  //     fullName,
-  //     email,
-  //     countryCode,
-  //     phone,
-  //     company: "Appointment Form", // static label
-  //     message,
-  //   };
-
-  //   const loadingMsg =
-  //     lang === "hi" ? "अपॉइंटमेंट भेजा जा रहा है..." : "Sending appointment...";
-  //   const successMsg =
-  //     lang === "hi"
-  //       ? "अपॉइंटमेंट सफलतापूर्वक भेजा गया।"
-  //       : "Appointment sent successfully.";
-  //   const errorMsg =
-  //     lang === "hi" ? "भेजने में विफल ❌" : "Failed to send appointment ❌";
-  //   const somethingWrongMsg =
-  //     lang === "hi" ? "कुछ गलत हुआ।" : "Something went wrong.";
-
-  //   const toastId = toast.loading(loadingMsg); // Use toast.loading and get toastId
-
-  //   try {
-  //     const response = await axios.post(
-  //       "https://api.shardaclinics.in/send-mail",
-  //       formData
-  //     );
-
-  //     if (response.status === 200) {
-  //       toast.update(toastId, {
-  //         render: successMsg,
-  //         type: "success",
-  //         isLoading: false,
-  //         autoClose: 3000,
-  //       }); // Update existing toast
-  //       // Reset form
-  //       setFullName("");
-  //       setEmail("");
-  //       setCountryCode("India (+91)");
-  //       setPhone("");
-  //       setMessage("");
-  //       setConsent(false);
-  //     } else {
-  //       toast.update(toastId, {
-  //         render: somethingWrongMsg,
-  //         type: "error",
-  //         isLoading: false,
-  //         autoClose: 3000,
-  //       }); // Update existing toast
-  //     }
-  //   } catch (err) {
-  //     toast.update(toastId, {
-  //       render: errorMsg,
-  //       type: "error",
-  //       isLoading: false,
-  //       autoClose: 3000,
-  //     }); // Update existing toast
-  //   }
-  // };
 
   const contactInfo = {
     email: "shardaclinicagra@gmail.com",
@@ -433,8 +364,7 @@ const Contact = ({ lang }) => {
                   {texts[lang].workingHoursText}
                 </p>
               </div>
-            <div className="mt-8">
-               
+              <div className="mt-8">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3548.1422743134563!2d77.97660467615185!3d27.214682576468462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397477979c4f7e29%3A0x4f72e22389b74416!2sSharda%20Clinic!5e0!3m2!1sen!2sin!4v1759907494551!5m2!1sen!2sin"
                   width="100%"

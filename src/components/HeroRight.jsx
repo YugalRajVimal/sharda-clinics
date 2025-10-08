@@ -16,7 +16,7 @@ const HeroRight = ({ lang }) => {
 
   return (
     <div
-      className={`relative w-full md:w-1/2 transition duration-1000 delay-500 h-[80vh] md:h-full ${
+      className={`relative w-full md:w-1/2 transition duration-1000 delay-500 md:h-[80vh] md:h-full ${
         shown ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"
       }`}
     >
@@ -67,53 +67,7 @@ const HeroRight = ({ lang }) => {
           </div>
         </div>
 
-        {/* Floating Card 2 */}
-        <div className="bg-white shadow-lg rounded-xl absolute p-3 z-20 -bottom-20 md:-bottom-5 -left-5">
-          <div className="flex items-center mb-2">
-            <div className="bg-blue-100 rounded-lg mr-3 p-2">
-              <svg
-                className="h-5 w-5 text-blue-600"
-                viewBox="0 0 24 24"
-                fill="none"
-              >
-                <path
-                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  stroke="currentColor"
-                ></path>
-              </svg>
-            </div>
-            <p
-              className={`font-semibold text-sm ${
-                lang === "hi" ? "font-hindi" : ""
-              }`}
-            >
-              {texts.support[lang]}
-            </p>
-          </div>
-          <div className="flex">
-            <div className="flex -space-x-2">
-              <div className="flex items-center justify-center text-white h-6 rounded-full text-xs w-6 bg-blue-500">
-                JD
-              </div>
-              <div className="flex items-center justify-center text-white h-6 rounded-full text-xs w-6 bg-green-500">
-                MK
-              </div>
-              <div className="flex items-center justify-center text-white h-6 rounded-full text-xs w-6 bg-purple-500">
-                AL
-              </div>
-            </div>
-            <div
-              className={`text-gray-500 text-xs ml-2 ${
-                lang === "hi" ? "font-hindi" : ""
-              }`}
-            >
-              {texts.available[lang]}
-            </div>
-          </div>
-        </div>
+     
       </div>
     </div>
   );

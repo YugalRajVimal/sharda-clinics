@@ -268,7 +268,7 @@ const Contact = ({ lang }) => {
     <div className="pt-20 px-4 md:px-6 lg:px-12">
       <section className="py-12 md:py-24">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row gap-12">
+          <div className="flex flex-col md:flex-row items-center gap-12">
             {/* Form Section */}
             <div className="flex-1">
               <h2 className="text-sm uppercase tracking-widest text-danger mb-2 font-montserrat">
@@ -432,6 +432,19 @@ const Contact = ({ lang }) => {
                 <p className="text-gray-light font-roboto whitespace-pre-line">
                   {texts[lang].workingHoursText}
                 </p>
+              </div>
+            <div className="mt-8">
+               
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3548.1422743134563!2d77.97660467615185!3d27.214682576468462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397477979c4f7e29%3A0x4f72e22389b74416!2sSharda%20Clinic!5e0!3m2!1sen!2sin!4v1759907494551!5m2!1sen!2sin"
+                  width="100%"
+                  height="250"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="rounded-lg shadow-md"
+                ></iframe>
               </div>
             </div>
           </div>

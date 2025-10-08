@@ -96,8 +96,8 @@ const WhyChooseUs = ({ lang }) => {
   const selectedTitles = titles[lang] || titles.en;
 
   return (
-    <section className="py-20 pt-50 md:pt-10 bg-white-custom">
-      <div className="mx-auto container px-6">
+    <section className="py-10 md:pt-6 bg-white-custom">
+      <div className="mx-auto container px-6"> 
         {/* Title */}
         <div className="mx-auto max-w-3xl mb-16 text-center">
           <h2

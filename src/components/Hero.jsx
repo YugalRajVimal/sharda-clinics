@@ -70,7 +70,7 @@ const Hero = ({ lang }) => {
         <div className="flex justify-center container flex-col  px-6 py-20 relative z-10">
           <div className="flex items-center flex-col-reverse md:flex-row">
             <div
-              className={` md:w-1/2 transition duration-1000 delay-300 h-[80vh] ${
+              className={` md:w-1/2 transition duration-1000 delay-300 h-full ${
                 shown
                   ? "opacity-100 translate-x-0"
                   : "opacity-0 -translate-x-12"
